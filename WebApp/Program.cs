@@ -16,11 +16,11 @@ IdentityModelEventSource.ShowPII = true;
 builder.Services.AddAuthentication(options =>
 {
     // Store the session to cookies
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    options.DefaultScheme = "Cookies";// CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = "oidc";// OpenIdConnectDefaults.AuthenticationScheme;
 })
     .AddCookie("Cookies")
-    .AddOpenIdConnect(options =>
+    .AddOpenIdConnect("oidc", options =>
     {
         // URL of the Keycloak server
         options.Authority = "http://localhost:8080/realms/myrealm/";
