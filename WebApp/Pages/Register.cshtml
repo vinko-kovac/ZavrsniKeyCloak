@@ -1,0 +1,27 @@
+﻿@page
+@model WebApp.Pages.RegisterModel
+
+<div>
+	<form asp-page="http://localhost:8080/auth/admin/realms/myrealm/users">
+
+                            <div class="form-group">
+                                <label asp-for="Input.Username"></label>
+                                <input class="form-control" placeholder="Username" asp-for="Input.Username" autofocus>
+                            </div>
+                            <!--<div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input type="password" class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="off">
+                            </div>-->
+                            <div class="form-group">
+                                <label asp-for="Input.FirstName"></label>
+                                <input class="form-control" placeholder="First name" asp-for="Input.FirstName">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.LastName"></label>
+                                <input class="form-control" placeholder="Last name" asp-for="Input.LastName">
+                            </div>
+                            
+                            <button class="btn btn-primary" name="Input.Button" value="register">Register</button>
+                            <button class="btn btn-secondary" name="Input.Button" value="cancel">Cancel</button>
+                        </form>
+</div>
