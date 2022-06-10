@@ -1,0 +1,15 @@
+﻿@page
+@model WebApp.Pages.UsersModel
+
+
+<h2>Users:</h2>
+
+<dl>
+    @foreach(var u in Model.Users)
+    {
+        <h3>User: @u.Username</h3>
+
+        <dt>Email</dt>
+        <dd>@u.Email</dd>
+    }
+</dl>
