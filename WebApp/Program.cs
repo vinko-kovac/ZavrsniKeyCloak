@@ -23,18 +23,19 @@ builder.Services.AddAuthentication(options =>
     .AddOpenIdConnect("oidc", options =>
     {
         // URL of the Keycloak server
-        options.Authority = "http://localhost:8080/realms/myrealm/";
+        options.Authority = "http://localhost:8080/auth/realms/master/";
 
         // For testing we disable https (should be true for production)
         options.RequireHttpsMetadata = false;
         options.SaveTokens = true;
         options.ClientId = "demo";
         // Client secret shared with Keycloak
-        options.ClientSecret = "FJzKbnpYPBbaUG8AgHpt1e30momnPVF6";
+        options.ClientSecret = "RUjHbLckD6al2njis5YAaw1vQBlXGK2k";
+        //options.ClientSecret = "8YGSFSajRK2SFReCxcl6nSVlslGQFT74";
         options.GetClaimsFromUserInfoEndpoint = true;
 
         // OpenID flow to use
-        options.ResponseType = OpenIdConnectResponseType.IdToken;
+        options.ResponseType = "code";
     });
 
 var app = builder.Build();

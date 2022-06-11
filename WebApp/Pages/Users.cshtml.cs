@@ -17,26 +17,14 @@ namespace WebApp.Pages
         public async Task<IActionResult> OnGet()
         {
             Users = new List<InputUser> { new InputUser() };
+
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("accept", "application/json");
-                /*var cookies = HttpContext.Request.Cookies;
-                var cookie = string.Empty;
-                foreach (var key in cookies.Keys)
-                {
-                    cookie += key + "=" + cookies[key] + ";";
-                }
-                client.DefaultRequestHeaders.Add("cookie", cookie);*/
 
-                var tok = await HttpContext.GetTokenAsync("id-token");
 
-                var data = "username="+"&password=admin&client_id=keycloak-zavrsni&grant_type=password";
-                client.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded"); 
-                //var res = await client.PostAsync("http://localhost:8080/realms/master/protocol/openid-connect/token?"+data);;
-                //Debug.WriteLine(res);
+                var tok = await HttpContext.GetTokenAsync("access_token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tok);
-                Debug.WriteLine(client.DefaultRequestHeaders.ToString());
-                var response = await client.GetAsync("http://localhost:8080/auth/admin/realm/master/users");
+                var response = await client.GetAsync("http://localhost:8080/auth/admin/realms/master/users");
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     Debug.WriteLine(response.ToString());
